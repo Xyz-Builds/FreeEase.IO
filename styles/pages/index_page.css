@@ -78,7 +78,7 @@
 .buttons {
   display: flex;
   justify-self: center;
-  margin-bottom: min(10%, 4rem);
+  margin-bottom: min(5%, 4rem);
   padding-inline: 25px;
   gap: clamp(0.5rem, 0.5vw + 1rem, 2rem);
 }
@@ -89,12 +89,13 @@
   padding: 0.55em 2.2em;
   border-radius: 999em;
   cursor: pointer;
+  border: 0.01rem black solid;
   font-family: DM Sans;
   background-color: white;
   white-space: nowrap;
   transition:
     filter 0.3s ease-in-out,
-    font-weight 0.3s ease-in-out,
+    font-weight 0.4s ease-in-out,
     transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.2s ease;
 }
