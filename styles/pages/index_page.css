@@ -6,7 +6,7 @@
   justify-self: center;
   font-size: clamp(3rem, 4.5vw + 1rem, 5rem);
   font-weight: 500;
-  top: clamp(0.5rem, 2vw + 1rem, 2rem);
+  top: clamp(1rem, 10vw + 1rem, 2rem);
   color: rgb(120, 120, 120);
 }
 
