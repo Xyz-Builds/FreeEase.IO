@@ -1,28 +1,17 @@
-const phrases = ["No Problem.", "We've got you.", "Start today."];
-let phraseIdx = 0,
-  charIdx = 0,
-  deleting = false;
-const typedEl = document.querySelector(".typewriter");
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        setTimeout(() => {
+          entry.target.classList.add("animated");
+        }, 1000);
+      }
+    });
+  },
+  { threshold: 0.2 },
+);
 
-function typeStep() {
-  const phrase = phrases[phraseIdx];
-  if (!deleting) {
-    typedEl.textContent = phrase.slice(0, ++charIdx);
-    if (charIdx === phrase.length) {
-      deleting = true;
-      setTimeout(typeStep, 2200);
-      return;
-    }
-    setTimeout(typeStep, 65 + Math.random() * 40);
-  } else {
-    typedEl.textContent = phrase.slice(0, --charIdx);
-    if (charIdx === 0) {
-      deleting = false;
-      phraseIdx = (phraseIdx + 1) % phrases.length;
-      setTimeout(typeStep, 350);
-    } else {
-      setTimeout(typeStep, 35);
-    }
-  }
-}
-setTimeout(typeStep, 900);
+document
+  .querySelectorAll(".benefits .label, .benefit-items .item")
+  .forEach((el) => observer.observe(el));
