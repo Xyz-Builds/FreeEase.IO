@@ -4,40 +4,102 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  gap: clamp(0.7rem, 10vw + 1rem, 1.3rem);
+  padding-top: clamp(5.5rem, 11vw + 1rem, 7rem);
   padding-bottom: 0.5em;
+}
+
+main::selection {
+  background-color: yellow;
+  color: black;
+}
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition:
+    opacity 0.6s,
+    visibility 0.6s;
+}
+
+#loader.done {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Brief Section */
 
-.brief_intro .label {
-  font-family:
-    DM Sans,
-    sans-serif;
+.brief_intro .subtitle {
+  font-size: 30px;
+  font-family: "Syne", sans-serif;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   position: relative;
-  white-space: nowrap;
-  justify-self: center;
-  font-size: clamp(2.6rem, 4.5vw + 1rem, 5rem);
-  font-weight: 500;
-  top: clamp(1rem, 10vw + 1rem, 2.7rem);
-  color: rgb(120, 120, 120);
+  font-weight: 400;
+  font-size: clamp(0.5rem, 3vw, 1rem);
+  letter-spacing: 0.1rem;
+  margin-bottom: 1.6rem;
+  padding-inline: 40px;
+  line-height: 1;
 }
 
-.typewriter {
-  color: black;
-  white-space: nowrap;
+.brief_intro .label {
+  font-family: "Syne", sans-serif;
   position: relative;
-  font-family:
-    DM Sans,
-    sans-serif;
-  font-size: clamp(2.6rem, 4.5vw + 1rem, 5rem);
-  font-weight: 500;
-  justify-self: center;
-  top: clamp(1rem, 5vw + 1rem, 1rem);
-  border-right: 3px solid #aaff5e;
-  margin-bottom: min(2.6rem, 23rem);
-  animation: blink 0.75s step-end infinite;
-  min-height: 1.3em;
+  font-weight: 800;
+  font-size: clamp(30px, 9vw, 90px);
+  letter-spacing: -0.05em;
+  margin-bottom: 0;
+  padding-inline: 40px;
+  line-height: 1;
+}
+
+.word {
+  display: inline-block;
+  transition:
+    opacity 0.35s,
+    transform 0.35s;
+  font-family: "Syne", sans-serif;
+  align-self: flex-start;
+  z-index: 2;
+  position: relative;
+  font-weight: 800;
+  isolation: isolate;
+  font-size: clamp(30px, 9vw, 90px);
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.word-wrap {
+  position: relative;
+  align-self: flex-start;
+  width: fit-content;
+  padding-inline: 40px;
+}
+
+.word-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 20%;
+  left: 40px;
+  right: 40px;
+  height: 7px;
+  background: #dfff00;
+  z-index: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: grow 0.65s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
+}
+
+.word.out {
+  opacity: 0;
+  transform: translateY(-12px);
 }
 
 @keyframes blink {
@@ -57,17 +119,17 @@ main {
 }
 
 .brief {
-  font-family: DM Sans;
+  font-family: Syne;
   font-size: 30px;
-  justify-self: center;
-  padding-inline: 25px;
+  padding-inline: 50px;
   display: flex;
-  font-size: clamp(1.3rem, 1vw + 1rem, 1.7rem);
-  margin-bottom: clamp(1.5rem, 2.5rem, 3.5rem);
+  position: relative;
+  top: -1rem;
+  font-size: clamp(0.7rem, 1vw + 1rem, 1.5rem);
+  margin-bottom: 2rem;
   font-weight: 500;
   max-width: 1000px;
   color: rgb(92, 92, 92);
-  text-align: center;
 }
 
 @keyframes fadeUpwards {
@@ -81,35 +143,94 @@ main {
   }
 }
 
-.brief-divider {
-  width: 80%;
+@keyframes grow {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 /* CTA & LM buttons */
 
 .buttons {
   display: flex;
-  justify-self: center;
-  margin-bottom: min(5%, 4rem);
-  padding-inline: 25px;
-  gap: clamp(0.5rem, 0.5vw + 1rem, 2rem);
+  margin-bottom: clamp(1rem, 5vw + 1rem, 5rem);
+  padding-inline: 5%;
 }
 
 .cta,
 .lm {
-  font-size: clamp(0.8rem, 2vw, 1.2rem);
-  padding: 0.55em 2.2em;
-  border-radius: 999em;
+  font-size: clamp(0.5rem, 2vw, 0.9rem);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 1.25em 3em;
+  border-radius: 2.5px;
   cursor: pointer;
-  border: 0.01rem black solid;
-  font-family: DM Sans;
+  border: none;
+  font-family: Geist;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   background-color: white;
   white-space: nowrap;
-  transition:
-    filter 0.3s ease-in-out,
-    font-weight 0.4s ease-in-out,
-    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.2s ease;
+}
+
+.arrow {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: normal;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.lm {
+  color: gray;
+  transition: color 0.2s ease-in-out;
+}
+
+.lm:hover {
+  color: black;
+}
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  background: black;
+  color: white;
+}
+
+.cta::before {
+  content: "";
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  background: #dfff00;
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.45s;
+}
+
+.cta:hover span {
+  color: black;
+}
+
+.cta:hover::before {
+  transform: translateX(0);
 }
 
 .button-divider {
@@ -117,67 +238,48 @@ main {
   justify-self: center;
 }
 
-.cta:hover,
-.lm:hover {
-  filter: invert(1);
-  border-color: black;
-  font-weight: bolder;
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.cta:active,
-.lm:active {
-  transform: translateY(-1px) scale(0.98);
-}
-
 /* Dual Marquees */
 
-.marquee,
-.marquee2 {
+.marquee {
   overflow: hidden;
 }
 
 .marqueeTracks {
   display: flex;
   flex-direction: column;
+  font-family: Syne;
+  font-weight: 700;
   gap: 1.5rem;
-  background-color: rgb(54, 54, 54);
-  padding-block: 2rem;
-  color: white;
-  font-size: clamp(2.7rem, 3.4vw + 1rem, 3.6rem);
-}
-
-.marqueeTracks .divider {
-  border: 1px white solid;
-  justify-self: center;
-  width: 80%;
+  background-color: black;
+  margin-bottom: 0;
+  padding-block: 1.5rem;
+  color: gray;
+  font-size: clamp(2rem, 3vw + 1rem, 3rem);
 }
 
 .marquee-inner {
   display: inline-flex;
   white-space: nowrap;
-  animation: scroll 15s linear infinite;
+  animation: scroll 60s linear infinite;
 }
 
 .marquee-item {
   margin-right: 3rem;
   word-spacing: 10px;
-  transition: transform 0.4s ease-in-out;
+  transition: color 0.4s ease-in-out;
 }
 
-.marquee2 .marquee-inner {
-  animation-direction: reverse;
+.marqueeTracks .item1 {
+  color: white;
 }
 
-.marquee-inner:hover,
-.marquee2 .marquee-inner:hover {
+.marquee-inner:hover {
   animation-play-state: paused;
   cursor: pointer;
 }
 
 .marquee-item:hover {
-  transform: translateY(-5px) scale(1.05);
+  color: #dfff00;
   justify-self: center;
 }
 
@@ -190,133 +292,61 @@ main {
   }
 }
 
-/* Benefits Section */
+/* Members Section */
 
-.benefits {
+.members-section {
   display: grid;
-  padding-inline: 2rem;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  font-family: "Syne", sans-serif;
+  margin-top: 0;
+  padding-inline: 20px;
 }
 
-.benefits .label {
-  font-family: DM Sans;
-  justify-self: center;
+.members-section .p {
+  font-family: Syne;
+  margin: 0;
   text-transform: uppercase;
-  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-  margin-bottom: min(13%, 5rem);
-  opacity: 0;
-  transform: translateY(-10px);
-  transition:
-    opacity 1s ease-out,
-    transform 1s ease-out;
+  z-index: 2;
+  font-size: 15px;
+  font-weight: bold;
+  color: gray;
 }
 
-.benefits .label.visible {
-  opacity: 1;
-  transform: translateY(0);
+.members-section span {
+  margin: 0;
+  z-index: 2;
+  font-size: 40px;
+  font-weight: 900;
 }
 
-.benefit-items .item .item-label {
+.members-section div {
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+  width: 300px;
+  height: 200px;
+  gap: 10px;
+  cursor: pointer;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  align-items: left;
+}
+
+.rate-wrap::before {
+  content: "";
+  color: black;
   display: flex;
   align-items: center;
-  gap: 1.3rem;
-}
-
-.benefit-items .item h2 {
-  display: inline-block;
-  font-size: 30px;
-  width: fit-content;
-  background-color: rgb(73, 73, 73);
-  padding-inline: 5px;
-  padding-block: 5px;
-  border-radius: 5px;
-}
-
-.benefit-items {
-  display: grid;
-  width: 70vw;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   justify-content: center;
-  gap: clamp(0.5rem, 5vw + 1rem, 1.5rem);
-  color: white;
-  font-family: DM Sans;
-}
-
-.benefit-items .item {
-  background-color: rgb(54, 54, 54);
-  border-radius: 15px;
-  width: auto;
-  cursor: pointer;
-  padding-inline: 20px;
-  padding-bottom: 20px;
-  padding-top: 5px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 1s ease-out,
-    transform 1s ease-out,
-    box-shadow 0.3s ease;
-}
-
-.benefit-items .item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.benefit-items .item.animated {
-  transition:
-    opacity 1s ease-out,
-    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.3s ease;
-}
-
-.benefit-items .item.animated:hover {
-  transform: translateY(-5px) scale(1.04);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.benefit-items .item.animated:active {
-  transform: translateY(-1px) scale(0.98);
-}
-
-.benefit-items .item p {
-  font-size: 17px;
-  margin-top: 0.5rem;
-  font-weight: 550;
-}
-
-.benefit-items .item h1 {
-  font-size: clamp(1.5rem, 2.8vw, 1.7rem);
-}
-
-.brief_outro .bg {
-  object-fit: cover;
   position: absolute;
-  opacity: 0.3;
-  width: 100vw;
+  inset: 0;
+  background: #dfff00;
+  transform: translateY(101%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.brief_outro .subtitle {
-  font-family: DM Sans;
-  justify-self: center;
-  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-  margin-bottom: clamp(2rem, 3rem, 4rem);
-  text-align: center;
-  padding-inline: 10px;
-}
-
-.brief_outro .typewriter {
-  font-size: clamp(1.7rem, 3vw, 3.5rem);
-}
-
-.brief_outro .divider {
-  border: 0.01rem rgb(89, 89, 89) solid;
-  width: 30%;
-}
-
-.footer {
-  font-family: DM Sans;
-  font-weight: 500;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  justify-self: center;
+.rate-wrap:hover::before {
+  transform: translateY(0);
 }

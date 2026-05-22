@@ -1,49 +1,21 @@
-const typedEl = document.querySelector(".brief_intro .typewriter");
-const typedEl2 = document.querySelector(".brief_outro .typewriter");
+const words = [
+  "We've got you.",
+  "We've mapped it.",
+  "We light the way",
+  "A Future Outlined.",
+];
+let i = 0;
+const el = document.getElementById("word");
 
-createTypewriter(typedEl, ["No Problem.", "We've got you.", "Start today."]);
+el.textContent = words[0];
 
-createTypewriter(typedEl2, [
-  "Start with confidence",
-  "Your journey starts here.",
-  "Beginner to Pro.",
-]);
+setInterval(() => {
+  i = (i + 1) % words.length;
 
-function createTypewriter(element, phrases, options = {}) {
-  let phraseIdx = 0;
-  let charIdx = 0;
-  let deleting = false;
+  el.classList.add("out");
 
-  const typingSpeed = options.typingSpeed || 65;
-  const deletingSpeed = options.deletingSpeed || 35;
-  const pauseTime = options.pauseTime || 2200;
-  const nextDelay = options.nextDelay || 350;
-
-  function typeStep() {
-    const phrase = phrases[phraseIdx];
-
-    if (!deleting) {
-      element.textContent = phrase.slice(0, ++charIdx);
-
-      if (charIdx === phrase.length) {
-        deleting = true;
-        setTimeout(typeStep, pauseTime);
-        return;
-      }
-
-      setTimeout(typeStep, typingSpeed + Math.random() * 40);
-    } else {
-      element.textContent = phrase.slice(0, --charIdx);
-
-      if (charIdx === 0) {
-        deleting = false;
-        phraseIdx = (phraseIdx + 1) % phrases.length;
-        setTimeout(typeStep, nextDelay);
-      } else {
-        setTimeout(typeStep, deletingSpeed);
-      }
-    }
-  }
-
-  typeStep();
-}
+  setTimeout(() => {
+    el.textContent = words[i];
+    el.classList.remove("out");
+  }, 370);
+}, 2800);
