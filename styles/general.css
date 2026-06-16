@@ -11,3 +11,18 @@ main {
   overflow-x: hidden;
   box-sizing: border-box;
 }
+
+.ms {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: normal;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
