@@ -12,6 +12,24 @@ main {
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fbffb2;
+  border-radius: 999em;
+  transition: background-color 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffff27;
+}
+
 .ms {
   font-family: "Material Symbols Outlined";
   font-weight: normal;

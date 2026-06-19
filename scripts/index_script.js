@@ -91,7 +91,7 @@ const featureCardStyles = [
     iconColorLight: "#d9f0ff",
   },
   {
-    background: "#f6f1ff",
+    background: "#fff8e6",
     border: "rgba(128, 83, 255, 0.16)",
     shadow: "0 22px 55px rgba(0, 0, 0, 0.07)",
     iconColor: "#9c7cff",

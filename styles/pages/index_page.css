@@ -511,7 +511,7 @@ main::selection {
   min-width: 2.7rem;
   min-height: 2.7rem;
   padding: 0.3rem;
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   background-color: rgba(0, 0, 0, 0.9);
   color: var(--card-icon-color, rgba(255, 255, 255, 0.95));
   transition:
@@ -560,6 +560,206 @@ main::selection {
 .features-section .card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Plans Section */
+
+.plans-section {
+  position: relative;
+  width: 100%;
+  padding: 2.5rem 0 3rem;
+}
+
+.plans-section .label {
+  justify-self: center;
+  margin-block: 50px;
+  max-width: 720px;
+  text-align: center;
+  font-family: Geist;
+  text-transform: uppercase;
+  color: #4f4f4f;
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.plans-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: min(100%, 1240px);
+  justify-content: center;
+  align-items: stretch;
+}
+
+.plans-wrap article:nth-child(1) {
+  --accent: #dfff00;
+  --accent-bg: rgba(223, 255, 0, 0.15);
+}
+.plans-wrap article:nth-child(2) {
+  --accent: #60c6ff;
+  --accent-bg: rgba(96, 198, 255, 0.14);
+}
+.plans-wrap article:nth-child(3) {
+  --accent: #ffbf69;
+  --accent-bg: rgba(255, 191, 105, 0.16);
+}
+
+.plans-section .plan-card {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 2px solid rgba(12, 17, 23, 0.15);
+  box-shadow: 0 10px 26px rgba(12, 12, 12, 0.05);
+  min-height: 220px;
+  padding: 1.75rem 1.5rem;
+  transition:
+    transform 0.32s ease,
+    box-shadow 0.32s ease,
+    border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.plans-section .plan-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--accent, transparent);
+  transform: translateX(-8px);
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.plans-section .plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(10, 10, 10, 0.09);
+  border-color: rgba(12, 17, 23, 0.18);
+}
+
+.plans-section .plan-card:hover::before {
+  transform: translateX(0);
+}
+
+.plans-section .plan-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.plan-label {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: #1a1a1a;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.2;
+  font-weight: 700;
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.plan-label,
+.plans-section h1 {
+  font-family: "Geist", sans-serif;
+}
+
+.plans-section .plan-card h1 {
+  font-family: "Syne", sans-serif;
+  color: #0b0b0b;
+  margin: 0.5rem 0 0.25rem 0;
+  text-align: center;
+}
+
+.plans-section .pricing {
+  font-family: Syne;
+  color: #111111;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--accent-bg, rgba(223, 255, 0, 0.15));
+  padding-block: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.plan-label .ms {
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  min-height: 2.6rem;
+  padding: 0.18rem;
+  border-radius: 0.5rem;
+  color: #0b0b0b;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.85)
+  );
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(11, 11, 11, 0.04);
+}
+
+.plan-divider {
+  width: 80%;
+  border: 0.01px rgba(0, 0, 0, 0.15) solid;
+  margin-block: 20px;
+}
+
+.plans-section h1 {
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  margin: 0.5rem 0 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.plans-section .plan-card h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  background: var(--accent, #dfff00);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.plans-section .pricing {
+  font-family: "Syne", sans-serif;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--accent-bg, rgba(223, 255, 0, 0.15));
+  padding-block: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.plans-section p {
+  color: #525252;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  font-family: Geist, sans-serif;
+  line-height: 1.6;
+  margin-top: 0.9rem;
+  max-width: 78%;
 }
 
 /* Outro Section */
